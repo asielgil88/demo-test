@@ -143,6 +143,8 @@ public class NavigationActivity extends BaseActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             hideSoftKeyboard();
+            fragment_selected = 0;
+            displayFragment();
             searchQuery = searchTerm.getText().toString();
             refreshSearch(true);
             return true;
