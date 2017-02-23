@@ -22,7 +22,7 @@ Use Gradle from terminal.
 Unit Test
 ./gradlew test
 
-Instrumented Test
+Instrumented Test (Required Device or Emulator connected to adb)
 ./gradlew connectedAndroidTest -i
 
 See the report.
