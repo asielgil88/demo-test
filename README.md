@@ -6,6 +6,8 @@ Download the project
 
 git clone git@github.com:asielgil88/demo-test.git
 
+Import Project to Android Studio
+
 The application code is located in src/main/java
 Unit Tests are in src/test/java
 Create a test configuration with the JUnit4 runner: org.junit.runners.JUnit4
