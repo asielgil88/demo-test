@@ -1,14 +1,14 @@
 # demo-test
 
+### REQUIRED TWITTER APP INSTALLED TO SIGIN WITH TWITTER SDK ###
+
 Setup the project in Android studio and run tests.
 
 Download the project 
 
-git clone git@github.com:asielgil88/demo-test.git
+##git clone git@github.com:asielgil88/demo-test.git##
 
 Import Project to Android Studio
-
-### REQUIRED TWITTER APP INSTALL TO SIGIN WITH TWITTER SDK ###
 
 The application code is located in src/main/java
 Unit Tests are in src/test/java
@@ -22,10 +22,12 @@ The unit test will be ran automatically.
 Use Gradle from terminal.
 
 Unit Test
+```
 ./gradlew test
-
+```
 Instrumented Test (Required Device or Emulator connected to adb)
+```
 ./gradlew connectedAndroidTest -i
-
+```
 See the report.
 A report in HTML format is generated in app/build/reports/tests
