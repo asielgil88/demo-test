@@ -18,8 +18,12 @@ Run the newly created configuration
 The unit test will be ran automatically.
 
 Use Gradle from terminal.
+
+Unit Test
 ./gradlew test
 
-See the report.
+Instrumented Test
+./gradlew connectedAndroidTest -i
 
+See the report.
 A report in HTML format is generated in app/build/reports/tests
