@@ -1,5 +1,6 @@
 package com.demo.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,10 +12,12 @@ import android.widget.Toast;
 
 import com.demo.R;
 import com.demo.activities.BaseActivity;
+import com.demo.activities.CheckSearchActivity;
 import com.demo.adapters.SearchAdapter;
 import com.demo.adapters.UserAdapter;
 import com.demo.model.DataManager;
 import com.demo.model.SearchModel;
+import com.demo.utils.RecyclerItemClickListener;
 
 import java.util.List;
 
@@ -45,12 +48,21 @@ public class PreviousSearchFragment extends Fragment {
     }
 
     public void updateUI() {
-        List<SearchModel> searchList = DataManager.getAll();
+        final List<SearchModel> searchList = DataManager.getAll();
 
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         SearchAdapter adapter = new SearchAdapter(getActivity(), searchList);
         recycler.setAdapter(adapter);
+
+        recycler.addOnItemTouchListener(new RecyclerItemClickListener(activity, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(activity, CheckSearchActivity.class);
+                intent.putExtra("searchId", searchList.get(position).getId());
+                startActivity(intent);
+            }
+        }));
     }
 
 }

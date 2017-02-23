@@ -143,8 +143,10 @@ public class NavigationActivity extends BaseActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             hideSoftKeyboard();
-            fragment_selected = 0;
-            displayFragment();
+            if(fragment_selected != 0) {
+                fragment_selected = 0;
+                displayFragment();
+            }
             searchQuery = searchTerm.getText().toString();
             refreshSearch(true);
             return true;
@@ -192,7 +194,8 @@ public class NavigationActivity extends BaseActivity
         switch (fragment_selected) {
 
             case 0:
-                searchFragment = new SearchFragment();
+                if (searchFragment == null)
+                    searchFragment = new SearchFragment();
                 fragment = searchFragment;
                 break;
             case 1:
@@ -205,7 +208,6 @@ public class NavigationActivity extends BaseActivity
         }
 
         currentFragment = fragment;
-        getSupportFragmentManager().popBackStack(null, getSupportFragmentManager().POP_BACK_STACK_INCLUSIVE);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.navigation_container, fragment).commit();
         drawer.closeDrawer(GravityCompat.START);
@@ -242,7 +244,6 @@ public class NavigationActivity extends BaseActivity
             fragment_selected = 1;
         }
         displayFragment();
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.activeandroid.ActiveAndroid;
 import com.demo.R;
 import com.demo.activities.BaseActivity;
 import com.demo.adapters.UserAdapter;
 import com.demo.helper.MyTwitterApiClient;
 import com.demo.model.DataManager;
+import com.demo.model.SearchModel;
 import com.demo.model.TweetModel;
 import com.demo.model.UserModel;
 import com.twitter.sdk.android.core.Callback;
@@ -43,7 +43,6 @@ public class SearchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = (BaseActivity) getActivity();
-
         apiClient = new MyTwitterApiClient(TwitterCore.getInstance().getSessionManager().getActiveSession());
     }
 
@@ -54,22 +53,29 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         recycler = (RecyclerView) view.findViewById(R.id.recycler_view);
 
+        if (getArguments() != null) {
+            long searchid = getArguments().getLong("searchId");
+            if (searchid != -1) {
+                final SearchModel searchModel = (SearchModel) DataManager.getItem(SearchModel.class, searchid);
+                updateUI(searchModel.users());
+            }
+        }
+
         return view;
     }
 
-    public void updateUI(List<UserModel> usersFetched) {
+    public void updateUI(final List<UserModel> usersFetched) {
         this.users = usersFetched;
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new UserAdapter(getActivity(), users);
         recycler.setAdapter(adapter);
-
         fetchAditionalData();
     }
 
     public void fetchAditionalData() {
 
-        for (int i= 0; i < users.size(); i ++) {
+        for (int i = 0; i < users.size(); i++) {
 
             final UserModel u = users.get(i);
 
@@ -100,4 +106,7 @@ public class SearchFragment extends Fragment {
 
     }
 
+    public void initData(List<UserModel> users) {
+        this.users = users;
+    }
 }
