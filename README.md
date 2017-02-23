@@ -8,7 +8,7 @@ git clone git@github.com:asielgil88/demo-test.git
 
 Import Project to Android Studio
 
-*** REQUIRED TWITTER APP INSTALL TO SIGIN WITH TWITTER SDK ***
+### REQUIRED TWITTER APP INSTALL TO SIGIN WITH TWITTER SDK ###
 
 The application code is located in src/main/java
 Unit Tests are in src/test/java
