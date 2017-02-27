@@ -1,6 +1,6 @@
 # demo-test
 
-### REQUIRED TWITTER APP INSTALLED TO SIGIN WITH TWITTER SDK ###
+### REQUIRED TWITTER APP INSTALLED TO SIGNIN WITH TWITTER SDK ###
 
 Setup the project in Android studio and run tests.
 
